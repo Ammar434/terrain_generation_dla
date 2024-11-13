@@ -9,6 +9,12 @@
 </div>
 
 ## 📋 Overview
+
+
+https://github.com/user-attachments/assets/55113b6f-6255-4ba8-bd25-12a1e17716f7
+
+
+
 This project implements a GPU-accelerated terrain generation system using Diffusion Limited Aggregation (DLA) with real-time OpenGL visualization. The implementation combines DLA-based mountain formation with multi-scale Gaussian filtering to create realistic terrain features.
 
 ## 🌄 Features
@@ -77,6 +83,9 @@ __global__ void freezeParticlesKernel(
     int height
 );
 ```
+![layer_01_2024-11-13_04-24-20](https://github.com/user-attachments/assets/88593f5e-8a88-4fb9-ad07-bb4987f1dd68)
+
+![layer_01_2024-11-13_02-29-52](https://github.com/user-attachments/assets/dde86d3d-ff77-4467-8d94-7386638a5564)
 
 ### 3. Multi-scale Filtering
 Multiple Gaussian filters are applied with exponentially increasing radii:
@@ -90,8 +99,23 @@ __global__ void gaussianSmoothingKernel(
     float radius
 );
 ```
-
 The filtering process creates a hierarchy of terrain features at different scales.
+<div align="center">
+
+| Layer | Description | Visualization |
+|:-----:|-------------|:-------------:|
+| Layer 1 | Initial DLA Output | ![layer_01](https://github.com/user-attachments/assets/f8612cbb-7f72-41fd-a3fa-f6604ee1bd52) |
+| Layer 2 | First Smoothing Pass | ![layer_02](https://github.com/user-attachments/assets/0097bd20-67bf-4605-9fee-02a1687242c3) |
+| Layer 3 | Medium-Scale Features | ![layer_03](https://github.com/user-attachments/assets/a1dec2f4-1937-4dd4-8c76-aacbbcf47257) |
+| Layer 4 | Large-Scale Features | ![layer_04](https://github.com/user-attachments/assets/8bc9505a-4072-45cb-8dce-3dd6e2321baa) |
+| Layer 5 | Major Landforms | ![layer_05](https://github.com/user-attachments/assets/49ca7420-3049-4a49-8bb7-d950b1182dc9) |
+
+### 4. Final Combined Result
+After combining all layers with appropriate weights:
+
+<img src="https://github.com/user-attachments/assets/ac5793d0-8b28-4f9b-ab7f-dce5c1ea7a17" alt="Combined Result" width="600"/>
+
+</div>
 
 ## 📋 Prerequisites
 - NVIDIA GPU with CUDA support (Optional - required only for new heightmap generation)
